@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -44,18 +44,18 @@
 
                             @if (Route::has('register.show'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register.show') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link @if(url()->current() == route('register.show')) active @endif" href="{{ route('register.show') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
 							
 							@if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link @if(url()->current() == route('login')) active @endif" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
                         @else
 							<li class="nav-item">
-								<a class="nav-link" href="{{ route('admin.quiz') }}">{{ __('Quiz') }}</a>
+								<a class="nav-link @if(url()->current() == route('admin.quiz')) active @endif" href="{{ route('admin.quiz') }}">{{ __('Quiz') }}</a>
 							</li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

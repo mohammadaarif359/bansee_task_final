@@ -9,7 +9,7 @@ use App\Models\Question;
 class QuizController extends Controller
 {
     public function index() {
-		$questions = Question::get();
+		$questions = Question::select('id','question_text','option_a','option_b','option_c','option_d')->get();
 		return view('admin.quiz.index',compact('questions'));
 	}
 	public function score(Request $request) {
@@ -52,7 +52,7 @@ class QuizController extends Controller
         // Store results in session
         $request->session()->flash('results', $results);
         $request->session()->flash('score', $score);
-
-        return redirect()->route('admin.quiz')->with('success', 'Quiz completed Successfully You got '.$totalCorrect.' score!');
+		$msg = "Quiz completed Successfully You got ".$totalCorrect." score. \n Correct answer : ".$totalCorrect." | Incorrect answer : ".$totalIncorrect;
+        return redirect()->route('admin.quiz')->with('success', $msg);
 	}
 }
